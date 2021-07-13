@@ -1,0 +1,47 @@
+{
+  "name": "testfullstack2021solution",
+  "version": "1.0.0",
+  "description": "Solucion a la prueba tecnica Capitaria 2021 puesto Full-Stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test",
+    "prestart": "babel ./src --out-dir build",
+    "start": "node ./build/bin/www",
+    "startdev": "nodemon --exec babel-node ./src/bin/www",
+    "runQuery": "babel-node ./src/utils/runQuery"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tisks/testfullstack2021Solution.git"
+  },
+  "keywords": [
+    "nodejs",
+    "postgresql",
+    "expressjs",
+    "html",
+    "css3",
+    "js"
+  ],
+  "author": "Leiser Mahu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tisks/testfullstack2021Solution/issues"
+  },
+  "homepage": "https://github.com/Tisks/testfullstack2021Solution#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/register": "^7.12.10",
+    "@babel/runtime": "^7.12.5",
+    "nodemon": "^2.0.7"
+  }
+}
