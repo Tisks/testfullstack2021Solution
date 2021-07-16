@@ -79,8 +79,9 @@ dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY',
 createTable(table,columnNames,dataTypes)
 
 table = 'Mark'
-columnNames = ['id_student','id_test','mark']
-dataTypes = ['INT REFERENCES Student (id_student) ON UPDATE CASCADE ON DELETE CASCADE',
+columnNames = ['int_mark','id_student_course','id_test','mark']
+dataTypes = [ 'INT primary key GENERATED ALWAYS AS IDENTITY', 
+              'INT REFERENCES Student_Course (id_student_course) ON UPDATE CASCADE ON DELETE CASCADE',
               'INT REFERENCES Test (id_test) ON UPDATE CASCADE ON DELETE CASCADE',
               'INT NOT NULL']
 
