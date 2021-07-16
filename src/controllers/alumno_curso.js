@@ -10,12 +10,39 @@ export const studentCourseList = async (req, res) => {
     res.status(200).json({ messages: err.stack });
   }
 };
+export const getStudentCourseUniqueId = async (req, res) => {
+  console.log(req.params)
+  const {student_course_id} = req.params;
+  const conditions = `WHERE student_course_id = '${student_course_id}'`
+  try {
+    const data = await studentModel.selectAll(conditions);
+    res.status(200).json({ messages: data.rows });
+  } catch (err) {
+    res.status(200).json({ messages: err.stack });
+  }
+};
+export const getStudentCourseIds = async (req, res) => {
+  console.log(req.params)
+
+  const { student_id,course_id } = req.params;
+  
+  const columns = 'student_course_id';
+  const values = `'${student_course_id}'`;
+
+  const conditions = `WHERE student_id = '${student_id}' AND course_id = '${course_id}'`
+  try {
+    const data = await studentModel.select(columns, values, conditions);
+    res.status(200).json({ messages: data.rows });
+  } catch (err) {
+    res.status(200).json({ messages: err.stack });
+  }
+};
+
 export const addStudentCourse = async (req, res) => {
   console.log(req.body)
-  const { name } = req.body;
-  const { student_id,subject_id } = req.body;
-  const columns = 'student_id,subject_id';
-  const values = `'${student_id}','${subject_id}'`;
+  const { student_id,course_id } = req.body;
+  const columns = 'student_id,course_id';
+  const values = `'${student_id}','${course_id}'`;
   try {
     const data = await studentCourse.insertWithReturn(columns, values);
     res.status(200).json({ messages: data.rows });
@@ -23,3 +50,33 @@ export const addStudentCourse = async (req, res) => {
     res.status(200).json({ messages: err.stack });
   }
 };
+
+
+export const updateStudentCourse = async (req, res) => {
+  console.log(req.params)
+  console.log(req.body)
+  const { student_id,course_id } = req.body;
+  const {student_course_id} =  req.params;
+  const columns = 'student_id, course_id';
+  const values = `'${student_id}','${course_id}'`;
+  const conditions = `student_course_id = '${student_course_id}'`
+  try {
+    const data = await studentModel.update(columns, values, conditions);
+    res.status(200).json({ messages: data.rows });
+  } catch (err) {
+    res.status(200).json({ messages: err.stack });
+  }
+};
+
+export const deleteStudentCourse = async (req, res) => {
+  console.log( req.params)
+  const { student_course_id} =  req.params;
+  const conditions = `student_course_id = '${student_course_id}'`
+  try {
+    const data = await studentModel.delete(conditions);
+    res.status(200).json({ messages: data.rows });
+  } catch (err) {
+    res.status(200).json({ messages: err.stack });
+  }
+};
+

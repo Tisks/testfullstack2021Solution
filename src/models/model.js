@@ -38,9 +38,12 @@ class Model {
     for (let i = 0; i < columns.length; i++) {
       single_column = columns[i];
       single_value = values[i];
-      query+= `${single_column} = ${single_value}, `
+      if(single_value !== 'undefined'){
+        query+= `${single_column} = ${single_value}, `
+      }
     }
     query+= `WHERE ${conditions}`
+    console.log('Linea 46: ', query)
     return this.pool.query(query);
   }
   async delete(conditions) {

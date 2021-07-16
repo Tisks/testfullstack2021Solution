@@ -1,8 +1,18 @@
 import express from 'express';
-import {addTeacherSubject,teacherSubjectList} from '../controllers';
+import {teacherSubjectList,getTeacherSubjectUniqueId,getTeacherSubjectIds,addTeacherSubject,updateTeacherSubject,deleteTeacherSubject} from '../controllers';
 
 const profesorRamoRouter = express.Router();
-profesorRamoRouter.get('/lista_profesor_ramo_relacion',teacherSubjectList);
-profesorRamoRouter.post('/profesor_ramo_relacion',addTeacherSubject);
+profesorRamoRouter.get('/lista_profesor_profesor_ramo',teacherSubjectList);
+
+
+
+profesorRamoRouter.get('/profesor_ramo/:teacher_subject_id',getTeacherSubjectUniqueId);
+profesorRamoRouter.get('/profesor_ramo/:teacher_id/:subject_id',getTeacherSubjectIds);
+
+profesorRamoRouter.put('/profesor_ramo/:teacher_subject_id',updateTeacherSubject);
+profesorRamoRouter.delete('/profesor_ramo/:teacher_id',deleteTeacherSubject);
+
+
+profesorRamoRouter.post('/profesor_ramo',addTeacherSubject);
 
 export default profesorRamoRouter;

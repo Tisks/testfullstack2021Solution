@@ -10,6 +10,18 @@ export const subjectList = async (req, res) => {
     res.status(200).json({ messages: err.stack });
   }
 };
+
+export const getSubject = async (req, res) => {
+  console.log(req.params)
+  const {subject_id} = req.params;
+  const conditions = `WHERE subject_id = '${subject_id}'`
+  try {
+    const data = await studentModel.selectAll(conditions);
+    res.status(200).json({ messages: data.rows });
+  } catch (err) {
+    res.status(200).json({ messages: err.stack });
+  }
+};
 export const addSubject = async (req, res) => {
   console.log('Agregando ramo')
   console.log(req.body)
@@ -18,6 +30,35 @@ export const addSubject = async (req, res) => {
   const values = `'${name}'`;
   try {
     const data = await subjectModel.insertWithReturn(columns, values);
+    res.status(200).json({ messages: data.rows });
+  } catch (err) {
+    res.status(200).json({ messages: err.stack });
+  }
+};
+
+
+export const updateSubject = async (req, res) => {
+  console.log(req.params)
+  console.log(req.body)
+  const subject_id =  req.params;
+  const {name} = req.body
+  const columns = 'name';
+  const values = `'${name}'`;
+  const conditions = `subject_id = '${subject_id}'`
+  try {
+    const data = await studentModel.update(columns, values, conditions);
+    res.status(200).json({ messages: data.rows });
+  } catch (err) {
+    res.status(200).json({ messages: err.stack });
+  }
+};
+
+export const deleteSubject = async (req, res) => {
+  console.log( req.params)
+  const { subject_id} =  req.params;
+  const conditions = `subject_id = '${subject_id}'`
+  try {
+    const data = await studentModel.delete(conditions);
     res.status(200).json({ messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });
