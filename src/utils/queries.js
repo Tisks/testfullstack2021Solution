@@ -22,56 +22,61 @@ var createTable = (tableName, columnNames, dataTypes) => {
 }
 
 let table = 'Student'
-let columnNames = ['id_student', 'name', 'lastName']
+let columnNames = ['student_id', 'name', 'lastName']
 let dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY', 'VARCHAR NOT NULL', 'VARCHAR NOT NULL']
 
 createTable(table, columnNames, dataTypes)
 
 table = 'Teacher'
-columnNames = ['id_teacher', 'name', 'lastName']
+columnNames = ['teacher_id', 'name', 'lastName']
 dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY', 'VARCHAR NOT NULL', 'VARCHAR NOT NULL']
 
 createTable(table, columnNames, dataTypes)
 
 table = 'Subject'
-columnNames = ['id_subject', 'name']
+columnNames = ['subject_id', 'name']
 dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY', 'VARCHAR NOT NULL']
 
 createTable(table, columnNames, dataTypes)
 
 table = 'Teacher_Subject'
-columnNames = ['id_teacher','id_subject','CONSTRAINT id_teacher_subject']
-dataTypes = ['INT REFERENCES Teacher (id_teacher) ON UPDATE CASCADE ON DELETE CASCADE',
-            'INT REFERENCES Subject (id_subject) ON UPDATE CASCADE ON DELETE CASCADE',
-            'PRIMARY KEY (id_teacher, id_subject) ']
+columnNames = ['teacher_subject_id','teacher_id','subject_id', 'CONSTRAINT cs_teacher_fk','CONSTRAINT cs_subject_fk', 'CONSTRAINT teacher_subject_pk']
+dataTypes = ['INT UNIQUE GENERATED ALWAYS AS IDENTITY',
+            'INT NOT NULL ',
+            'INT NOT NULL ',
+            'FOREIGN KEY (teacher_id) REFERENCES Teacher (teacher_id) ON UPDATE CASCADE ON DELETE CASCADE',
+            'FOREIGN KEY (subject_id) REFERENCES Subject (subject_id) ON UPDATE CASCADE ON DELETE CASCADE',
+            'PRIMARY KEY (teacher_id,subject_id)']
 
 createTable(table, columnNames, dataTypes)
 
 
 table = 'Course'
-columnNames = ['id_teacher','id_subject','CONSTRAINT id_course', 'name']
+columnNames = ['course_id','teacher_subject_id', 'CONSTRAINT cs_teacher_course_fk','name']
 dataTypes = [ 
-            'INT REFERENCES Teacher (id_teacher) ON UPDATE CASCADE ON DELETE CASCADE',
-            'INT REFERENCES Subject (id_subject) ON UPDATE CASCADE ON DELETE CASCADE',
-            'PRIMARY KEY (id_teacher, id_subject) ',
-            'VARCHAR NOT NULL']
+              'INT UNIQUE primary key NOT NULL  GENERATED ALWAYS AS IDENTITY',
+              'INT NOT NULL ',
+              'FOREIGN KEY (teacher_subject_id) REFERENCES Teacher_Subject (teacher_subject_id) ON UPDATE CASCADE ON DELETE CASCADE',
+              'VARCHAR NOT NULL']
 
 createTable(table, columnNames, dataTypes)
 
 table = 'Student_Course'
-columnNames = ['id_student_course','id_course', 'id_student','CONSTRAINT fk_course']
-dataTypes = [ 'INT primary key GENERATED ALWAYS AS IDENTITY',
+columnNames = ['student_course_id','student_id', 'course_id','CONSTRAINT cs_teacher_course_fk','CONSTRAINT cs_subject_course_fk','CONSTRAINT student_course_pk']
+dataTypes = [ 'INT UNIQUE GENERATED ALWAYS AS IDENTITY',
               'INT NOT NULL',
-              'INT REFERENCES Student (id_student) ON UPDATE CASCADE ON DELETE CASCADE',
-              'FOREIGN KEY (id_student_course,id_course) REFERENCES Course (id_teacher,id_subject)']
+              'INT NOT NULL',
+              'FOREIGN KEY (student_id) REFERENCES Student (student_id) ON UPDATE CASCADE ON DELETE CASCADE',
+              'FOREIGN KEY (course_id) REFERENCES Course (course_id) ON UPDATE CASCADE ON DELETE CASCADE',
+              'PRIMARY KEY (student_id,course_id)']
 
 createTable(table,columnNames,dataTypes)
 
 table = 'Test'
-columnNames = ['id_test', 'id_course','CONSTRAINT fk_course','title','date']
-dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY', 
+columnNames = ['test_id', 'course_id','CONSTRAINT cs_teacher_course_fk','title','date']
+dataTypes = ['INT UNIQUE primary key  GENERATED ALWAYS AS IDENTITY', 
              'INT NOT NULL',
-             'FOREIGN KEY (id_test,id_course) REFERENCES Course (id_teacher,id_subject)',
+             'FOREIGN KEY (course_id) REFERENCES Course (course_id)  ON UPDATE CASCADE ON DELETE CASCADE',
              'VARCHAR NOT NULL',
              'TIMESTAMP NOT NULL']
 
@@ -79,11 +84,14 @@ dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY',
 createTable(table,columnNames,dataTypes)
 
 table = 'Mark'
-columnNames = ['int_mark','id_student_course','id_test','mark']
-dataTypes = [ 'INT primary key GENERATED ALWAYS AS IDENTITY', 
-              'INT REFERENCES Student_Course (id_student_course) ON UPDATE CASCADE ON DELETE CASCADE',
-              'INT REFERENCES Test (id_test) ON UPDATE CASCADE ON DELETE CASCADE',
-              'INT NOT NULL']
+columnNames = ['mark_id','test_id','student_course_id','CONSTRAINT cs_test_fk','CONSTRAINT cs_student_course_fk','CONSTRAINT mark_pk','mark']
+dataTypes = [ 'INT UNIQUE GENERATED ALWAYS AS IDENTITY',
+              'INT NOT NULL',
+              'INT NOT NULL',
+              'FOREIGN KEY (test_id) REFERENCES Test (test_id)  ON UPDATE CASCADE ON DELETE CASCADE',
+              'FOREIGN KEY (student_course_id) REFERENCES Student_Course (student_course_id)  ON UPDATE CASCADE ON DELETE CASCADE',
+              'PRIMARY KEY (test_id,student_course_id)',
+              'DECIMAL NOT NULL']
 
 createTable(table,columnNames,dataTypes)
 

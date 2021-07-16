@@ -1,8 +1,8 @@
 import express from 'express';
-import {} from '../controllers';
+import {addSubject, subjectList} from '../controllers';
 
 const ramoRouter = express.Router();
-ramoRouter.get('/alumno');
-ramoRouter.post('/alumno');
+ramoRouter.get('/lista_ramos',subjectList);
+ramoRouter.post('/ramo',addSubject);
 
 export default ramoRouter;

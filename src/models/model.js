@@ -5,7 +5,7 @@ class Model {
     this.pool = pool;
     this.table = table;
     //Probar si funciona
-    this.id = "id_"+table.toLowerCase();
+    this.id = table.toLowerCase()+'_id';
     this.pool.on('error', (err, client) => `Error, ${err}, on idle client${client}`);
   }
 
@@ -21,9 +21,9 @@ class Model {
   }
   async insertWithReturn(columns, values) {
     console.log("insertWithReturn: linea 30")
-    const query = `
+    let query = `
           INSERT INTO ${this.table} (${columns})
-          VALUES (${values})
+          VALUES (${values}) 
           RETURNING ${this.id},${columns}
     `;
     return this.pool.query(query);

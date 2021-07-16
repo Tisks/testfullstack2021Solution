@@ -1,8 +1,8 @@
 import express from 'express';
-import {} from '../controllers';
+import {addTeacher, teacherList} from '../controllers';
 
 const profesorRouter = express.Router();
-profesorRouter.get('/profesor');
-profesorRouter.post('/profesor');
+profesorRouter.get('/lista_profesores',teacherList);
+profesorRouter.post('/profesor',addTeacher);
 
 export default profesorRouter;

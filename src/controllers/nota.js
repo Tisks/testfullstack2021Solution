@@ -4,7 +4,7 @@ const markModel = new Model('Mark');
 
 export const markList = async (req, res) => {
   try {
-    const data = await markModel.select('name, message');
+    const data = await markModel.selectAll();
     res.status(200).json({ totalCount:data.rowCount ,messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });

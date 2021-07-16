@@ -1,8 +1,8 @@
 import express from 'express';
-import {} from '../controllers';
+import {addTeacherSubject,teacherSubjectList} from '../controllers';
 
 const profesorRamoRouter = express.Router();
-profesorRamoRouter.get('/alumno');
-profesorRamoRouter.post('/alumno');
+profesorRamoRouter.get('/lista_profesor_ramo_relacion',teacherSubjectList);
+profesorRamoRouter.post('/profesor_ramo_relacion',addTeacherSubject);
 
 export default profesorRamoRouter;

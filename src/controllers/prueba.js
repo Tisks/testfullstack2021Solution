@@ -4,7 +4,7 @@ const testModel = new Model('Test');
 
 export const testList = async (req, res) => {
   try {
-    const data = await testModel.select('name, message');
+    const data = await testModel.selectAll();
     res.status(200).json({ totalCount:data.rowCount ,messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });

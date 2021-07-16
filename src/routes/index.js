@@ -21,6 +21,7 @@ indexRouter.use(pruebaRouter)
 indexRouter.use(alumnoCursoRouter)
 indexRouter.use(profesorRamoRouter)
 indexRouter.get('/', function(req, res, next) {
+    console.log('entre')
     return res.status(200).json({ message: testEnvironmentVariable });
 });
 export default indexRouter;
