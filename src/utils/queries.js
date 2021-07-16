@@ -22,19 +22,19 @@ var createTable = (tableName, columnNames, dataTypes) => {
 }
 
 let table = 'Student'
-let columnNames = ['id_student', 'student_name', 'student_lastName']
+let columnNames = ['id_student', 'name', 'lastName']
 let dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY', 'VARCHAR NOT NULL', 'VARCHAR NOT NULL']
 
 createTable(table, columnNames, dataTypes)
 
 table = 'Teacher'
-columnNames = ['id_teacher', 'teacher_name', 'teacher_lastName']
+columnNames = ['id_teacher', 'name', 'lastName']
 dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY', 'VARCHAR NOT NULL', 'VARCHAR NOT NULL']
 
 createTable(table, columnNames, dataTypes)
 
 table = 'Subject'
-columnNames = ['id_subject', 'subject_name']
+columnNames = ['id_subject', 'name']
 dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY', 'VARCHAR NOT NULL']
 
 createTable(table, columnNames, dataTypes)
@@ -59,19 +59,19 @@ dataTypes = [
 createTable(table, columnNames, dataTypes)
 
 table = 'Student_Course'
-columnNames = ['id_student_course','id_course', 'id_student','FOREIGN KEY (id_student_course,id_course)']
+columnNames = ['id_student_course','id_course', 'id_student','CONSTRAINT fk_course']
 dataTypes = [ 'INT primary key GENERATED ALWAYS AS IDENTITY',
               'INT NOT NULL',
               'INT REFERENCES Student (id_student) ON UPDATE CASCADE ON DELETE CASCADE',
-              'REFERENCES Course (id_teacher,id_subject)']
+              'FOREIGN KEY (id_student_course,id_course) REFERENCES Course (id_teacher,id_subject)']
 
 createTable(table,columnNames,dataTypes)
 
 table = 'Test'
-columnNames = ['id_test', 'id_course','FOREIGN KEY (id_test,id_course)','title','date']
+columnNames = ['id_test', 'id_course','CONSTRAINT fk_course','title','date']
 dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY', 
              'INT NOT NULL',
-             'REFERENCES Course (id_teacher,id_subject)',
+             'FOREIGN KEY (id_test,id_course) REFERENCES Course (id_teacher,id_subject)',
              'VARCHAR NOT NULL',
              'TIMESTAMP NOT NULL']
 

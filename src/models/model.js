@@ -10,19 +10,19 @@ class Model {
   }
 
   async select(columns, clause) {
-    let query = `SELECT ${columns} FROM public."${this.table}"`;
+    let query = `SELECT ${columns} FROM ${this.table}`;
     if (clause) query += clause;
     return this.pool.query(query);
   }
   async selectAll(clause) {
-    let query = `SELECT * FROM public."${this.table}"`;
+    let query = `SELECT * FROM ${this.table}`;
     if (clause) query += clause;
     return this.pool.query(query);
   }
   async insertWithReturn(columns, values) {
     console.log("insertWithReturn: linea 30")
     const query = `
-          INSERT INTO public."${this.table}" (${columns})
+          INSERT INTO ${this.table} (${columns})
           VALUES (${values})
           RETURNING ${this.id},${columns}
     `;

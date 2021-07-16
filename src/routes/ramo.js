@@ -1,8 +1,8 @@
 import express from 'express';
 import {} from '../controllers';
 
-const alumnoRouter = express.Router();
-alumnoRouter.get('/alumno');
-alumnoRouter.post('/alumno');
+const ramoRouter = express.Router();
+ramoRouter.get('/alumno');
+ramoRouter.post('/alumno');
 
-export default alumnoRouter;
+export default ramoRouter;

@@ -1,10 +1,10 @@
 import Model from '../models/model';
 
-const studentModel = new Model('Teacher');
+const studentCourse = new Model('Student_Course');
 
 export const studentList = async (req, res) => {
   try {
-    const data = await studentModel.select('name, message');
+    const data = await studentCourse.select('name, message');
     res.status(200).json({ totalCount:data.rowCount ,messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });
@@ -16,7 +16,7 @@ export const addStudent = async (req, res) => {
   const columns = 'name';
   const values = `'${name}'`;
   try {
-    const data = await studentModel.insertWithReturn(columns, values);
+    const data = await studentCourse.insertWithReturn(columns, values);
     res.status(200).json({ messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });
