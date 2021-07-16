@@ -1,0 +1,10 @@
+{
+    "watch": [
+      "package.json",
+      "nodemon.json",   
+      ".babelrc",
+      "src/",
+      ".env"
+    ],
+    "verbose": true
+}
