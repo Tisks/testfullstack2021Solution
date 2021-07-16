@@ -1,8 +1,8 @@
 import express from 'express';
-import {teacherSubjectList,getTeacherSubjectUniqueId,getTeacherSubjectIds,addTeacherSubject,updateTeacherSubject,deleteTeacherSubject} from '../controllers';
+import {listTeacherSubject,getTeacherSubjectUniqueId,getTeacherSubjectIds,addTeacherSubject,updateTeacherSubject,deleteTeacherSubject} from '../controllers';
 
 const profesorRamoRouter = express.Router();
-profesorRamoRouter.get('/lista_profesores_profesor_ramo',teacherSubjectList);
+profesorRamoRouter.get('/lista_profesores_profesor_ramo',listTeacherSubject);
 
 
 

@@ -1,8 +1,8 @@
 import express from 'express';
-import {getTeacher, updateTeacher, deleteTeacher, addTeacher, teacherList} from '../controllers';
+import {getTeacher, updateTeacher, deleteTeacher, addTeacher, listTeacher} from '../controllers';
 
 const profesorRouter = express.Router();
-profesorRouter.get('/lista_profesores',teacherList);
+profesorRouter.get('/lista_profesores',listTeacher);
 
 profesorRouter.get('/profesor/:teacher_id',getTeacher);
 profesorRouter.put('/profesor/:teacher_id',updateTeacher);

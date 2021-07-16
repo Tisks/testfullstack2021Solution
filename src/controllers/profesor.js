@@ -2,7 +2,7 @@ import Model from '../models/model';
 
 const teacherModel = new Model('Teacher');
 
-export const teacherList = async (req, res) => {
+export const listTeacher = async (req, res) => {
   try {
     const data = await teacherModel.selectAll();
     res.status(200).json({ totalCount:data.rowCount ,messages: data.rows });

@@ -1,8 +1,8 @@
 import express from 'express';
-import {courseList,getCourse,addCourse,updateCourse,deleteCourse} from '../controllers';
+import {listCourse,getCourse,addCourse,updateCourse,deleteCourse} from '../controllers';
 
 const cursoRouter = express.Router();
-cursoRouter.get('/lista_cursos', courseList);
+cursoRouter.get('/lista_cursos', listCourse);
 
 
 cursoRouter.get('/curso/:course_id',getCourse);
