@@ -15,7 +15,7 @@ export const getStudentCourseUniqueId = async (req, res) => {
   const {student_course_id} = req.params;
   const conditions = `WHERE student_course_id = '${student_course_id}'`
   try {
-    const data = await studentModel.selectAll(conditions);
+    const data = await studentCourse.selectAll(conditions);
     res.status(200).json({ messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });
@@ -31,7 +31,7 @@ export const getStudentCourseIds = async (req, res) => {
 
   const conditions = `WHERE student_id = '${student_id}' AND course_id = '${course_id}'`
   try {
-    const data = await studentModel.select(columns, values, conditions);
+    const data = await studentCourse.select(columns, values, conditions);
     res.status(200).json({ messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });
@@ -61,7 +61,7 @@ export const updateStudentCourse = async (req, res) => {
   const values = `'${student_id}','${course_id}'`;
   const conditions = `student_course_id = '${student_course_id}'`
   try {
-    const data = await studentModel.update(columns, values, conditions);
+    const data = await studentCourse.update(columns, values, conditions);
     res.status(200).json({ messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });
@@ -73,7 +73,7 @@ export const deleteStudentCourse = async (req, res) => {
   const { student_course_id} =  req.params;
   const conditions = `student_course_id = '${student_course_id}'`
   try {
-    const data = await studentModel.delete(conditions);
+    const data = await studentCourse.delete(conditions);
     res.status(200).json({ messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });

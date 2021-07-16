@@ -16,7 +16,7 @@ export const getSubject = async (req, res) => {
   const {subject_id} = req.params;
   const conditions = `WHERE subject_id = '${subject_id}'`
   try {
-    const data = await studentModel.selectAll(conditions);
+    const data = await subjectModel.selectAll(conditions);
     res.status(200).json({ messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });
@@ -46,7 +46,7 @@ export const updateSubject = async (req, res) => {
   const values = `'${name}'`;
   const conditions = `subject_id = '${subject_id}'`
   try {
-    const data = await studentModel.update(columns, values, conditions);
+    const data = await subjectModel.update(columns, values, conditions);
     res.status(200).json({ messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });
@@ -58,7 +58,7 @@ export const deleteSubject = async (req, res) => {
   const { subject_id} =  req.params;
   const conditions = `subject_id = '${subject_id}'`
   try {
-    const data = await studentModel.delete(conditions);
+    const data = await subjectModel.delete(conditions);
     res.status(200).json({ messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });

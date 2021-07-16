@@ -2,7 +2,7 @@ import express from 'express';
 import {studentCourseList,getStudentCourseUniqueId,getStudentCourseIds,addStudentCourse,updateStudentCourse,deleteStudentCourse} from '../controllers';
 
 const alumnoCursoRouter = express.Router();
-alumnoCursoRouter.get('/lista_alumno_curso',studentCourseList);
+alumnoCursoRouter.get('/lista_alumnos_curso',studentCourseList);
 
 
 alumnoCursoRouter.get('/alumno_curso/:student_course_id',getStudentCourseUniqueId);
