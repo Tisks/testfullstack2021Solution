@@ -40,8 +40,8 @@ Suponiendo que se tiene los ids del alumno (alumno_id) y del curso (curso_id)
 SELECT AVG(mk.mark) as promedio
 FROM MARK mk
 INNER JOIN Student_Course sc ON sc.student_course_id = mk.student_course_id
-INNER JOIN Course co ON sc.course_id = co.course_id AND co.course_id = **curso_id**
-INNER JOIN Student st ON st.student_id = sc.student_id AND st.student_id = **alumno_id**
+INNER JOIN Course co ON sc.course_id = co.course_id AND co.course_id = {curso_id}
+INNER JOIN Student st ON st.student_id = sc.student_id AND st.student_id = {alumno_id}
 ```
 
 3. Escriba una Query que entregue a los alumnos y el promedio que tiene
@@ -60,7 +60,17 @@ GROUP BY st.student_id, st.name, st.last_name, co.course_id, co.name;
 promedio rojo.
 
 ```
-
+SELECT student_courses.student_id, student_courses.name, student_courses.last_name
+FROM
+(SELECT sc.student_course_id, st.student_id, st.name, st.last_name, co.course_id, co.name AS nombre_curso
+FROM Student_Course sc
+INNER JOIN Course co ON sc.course_id = co.course_id
+INNER JOIN Student st ON st.student_id = sc.student_id 
+INNER JOIN mark mk ON mk.student_course_id = sc.student_course_id
+GROUP BY sc.student_course_id,st.student_id, st.name, st.last_name,co.course_id, co.name
+HAVING AVG(mk.mark) < 4.0) as student_courses
+GROUP BY student_courses.student_id, student_courses.name, student_courses.last_name
+HAVING COUNT(student_courses.student_course_id) > 1
 ```
 
 5. Dejando de lado el problema del cólegio se tiene una tabla con información de jugadores de tenis:
