@@ -1,5 +1,5 @@
 import express from 'express';
-import {getSubject, updateSubject, updateSubject, deleteSubject,addSubject, listSubject} from '../controllers';
+import {getSubject, updateSubject, deleteSubject,addSubject, listSubject} from '../controllers';
 
 const ramoRouter = express.Router();
 ramoRouter.get('/lista_ramos',listSubject);
