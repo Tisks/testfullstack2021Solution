@@ -1,5 +1,6 @@
 # testfullstack2021Solution
 https://github.com/capitaria/testfullstack2021/edit/main/test-fullstack.md
+
 Un colegio necesita un sistema para administrar sus cursos. El
 sistema tiene que soportar que se ingresen varios cursos. Cada curso
 tendrá un profesor a cargo y una serie de alumnos inscritos. Cada
@@ -15,18 +16,53 @@ problema con los campos y llaves de éstas. Intente hacer el sistema lo
 más robusto posible, pero sin incluir datos adicionales a los que se
 plantean acá.
 
+![Screenshot](testfullstack_MER.png)
+
+
 ## SQL
 
 Considerando el enunciado anterior conteste las siguientes preguntas:
 
-1. Escriba una Query que entregue la lista de  alumnos para el curso
+1. Escriba una Query que entregue la lista de alumnos para el curso
 "programación"
-2. Escriba una Query  que calcule el promedio de notas de un alumno en un
+```
+SELECT  st.student_id, st.name, st.last_name 
+FROM Student st
+INNER JOIN Student_Course sc ON st.student_id = sc.student_id
+INNER JOIN Course co ON sc.course_id = co.course_id AND co.name = 'programación';
+```
+2. Escriba una Query que calcule el promedio de notas de un alumno en un
 curso.
+
+Suponiendo que se tiene los ids del alumno (alumno_id) y del curso (curso_id)
+
+```
+SELECT AVG(mk.mark) as promedio
+FROM MARK mk
+INNER JOIN Student_Course sc ON sc.student_course_id = mk.student_course_id
+INNER JOIN Course co ON sc.course_id = co.course_id AND co.course_id = **curso_id**
+INNER JOIN Student st ON st.student_id = sc.student_id AND st.student_id = **alumno_id**
+```
+
 3. Escriba una Query que entregue a los alumnos y el promedio que tiene
 en cada curso.
+
+```
+SELECT st.student_id, st.name AS nombre_alumno, st.last_name, co.course_id, co.name AS nombre_curso, AVG(mk.mark) AS promedio
+FROM MARK mk
+INNER JOIN Student_Course sc ON sc.student_course_id = mk.student_course_id
+INNER JOIN Course co ON sc.course_id = co.course_id
+INNER JOIN Student st ON st.student_id = sc.student_id 
+GROUP BY st.student_id, st.name, st.last_name, co.course_id, co.name;
+```
+
 4. Escriba una Query que lista a todos los alumnos con más de un curso con
 promedio rojo.
+
+```
+
+```
+
 5. Dejando de lado el problema del cólegio se tiene una tabla con información de jugadores de tenis:
 `PLAYERS(Nombre, Pais, Ranking)`. Suponga que Ranking es un número de 1 a
 100 que es distinto para cada jugador. Si la tabla en un momento dado
@@ -47,6 +83,8 @@ b) 190
 c) 20
 d) imposible saberlo
 ```
+
+Respuesta: b) Debido a que es equivalente a una combinatoria 20 sobre 2
 
 ## Diseño de software
 
