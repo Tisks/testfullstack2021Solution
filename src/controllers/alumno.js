@@ -13,7 +13,7 @@ export const studentList = async (req, res) => {
 export const getStudent = async (req, res) => {
   console.log(req.params)
   const {student_id} = req.params;
-  const conditions = `WHERE student_id = '${student_id}'`
+  const conditions = `WHERE student_id = '${parseInt(student_id)}'`
   try {
     const data = await studentModel.selectAll(conditions);
     res.status(200).json({ messages: data.rows });
@@ -24,9 +24,9 @@ export const getStudent = async (req, res) => {
 
 export const addStudent = async (req, res) => {
   console.log(req.body)
-  const { name,lastName } = req.body;
-  const columns = 'name, lastName';
-  const values = `'${name}','${lastName}'`;
+  const { name,last_name } = req.body;
+  const columns = 'name, last_name';
+  const values = `'${name}','${last_name}'`;
   try {
     const data = await studentModel.insertWithReturn(columns, values);
     res.status(200).json({ messages: data.rows });
@@ -38,11 +38,11 @@ export const addStudent = async (req, res) => {
 export const updateStudent = async (req, res) => {
   console.log(req.params)
   console.log(req.body)
-  const student_id =  req.params;
-  const {name,lastName} = req.body
-  const columns = 'name, lastName';
-  const values = `'${name}','${lastName}'`;
-  const conditions = `student_id = '${student_id}'`
+  const {student_id} =  req.params;
+  const {name,last_name} = req.body
+  const columns = 'name, last_name';
+  const values = `'${name}','${last_name}'`;
+  const conditions = `student_id = '${parseInt(student_id)}'`
   try {
     const data = await studentModel.update(columns, values, conditions);
     res.status(200).json({ messages: data.rows });
@@ -54,7 +54,7 @@ export const updateStudent = async (req, res) => {
 export const deleteStudent = async (req, res) => {
   console.log( req.params)
   const { student_id} =  req.params;
-  const conditions = `student_id = '${student_id}'`
+  const conditions = `student_id = '${parseInt(student_id)}'`
   try {
     const data = await studentModel.delete(conditions);
     res.status(200).json({ messages: data.rows });

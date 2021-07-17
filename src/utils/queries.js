@@ -22,13 +22,13 @@ var createTable = (tableName, columnNames, dataTypes) => {
 }
 
 let table = 'Student'
-let columnNames = ['student_id', 'name', 'lastName']
+let columnNames = ['student_id', 'name', 'last_name']
 let dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY', 'VARCHAR NOT NULL', 'VARCHAR NOT NULL']
 
 createTable(table, columnNames, dataTypes)
 
 table = 'Teacher'
-columnNames = ['teacher_id', 'name', 'lastName']
+columnNames = ['teacher_id', 'name', 'last_name']
 dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY', 'VARCHAR NOT NULL', 'VARCHAR NOT NULL']
 
 createTable(table, columnNames, dataTypes)
@@ -47,6 +47,17 @@ dataTypes = ['INT UNIQUE GENERATED ALWAYS AS IDENTITY',
             'FOREIGN KEY (teacher_id) REFERENCES Teacher (teacher_id) ON UPDATE CASCADE ON DELETE CASCADE',
             'FOREIGN KEY (subject_id) REFERENCES Subject (subject_id) ON UPDATE CASCADE ON DELETE CASCADE',
             'PRIMARY KEY (teacher_id,subject_id)']
+
+createTable(table, columnNames, dataTypes)
+
+table = 'Student_Subject'
+columnNames = ['student_subject_id','student_id','subject_id', 'CONSTRAINT cs_student_fk','CONSTRAINT cs_subject_fk', 'CONSTRAINT student_subject_pk']
+dataTypes = ['INT UNIQUE GENERATED ALWAYS AS IDENTITY',
+            'INT NOT NULL ',
+            'INT NOT NULL ',
+            'FOREIGN KEY (student_id) REFERENCES Student (student_id) ON UPDATE CASCADE ON DELETE CASCADE',
+            'FOREIGN KEY (subject_id) REFERENCES Subject (subject_id) ON UPDATE CASCADE ON DELETE CASCADE',
+            'PRIMARY KEY (student_id,subject_id)']
 
 createTable(table, columnNames, dataTypes)
 
@@ -78,7 +89,7 @@ dataTypes = ['INT UNIQUE primary key  GENERATED ALWAYS AS IDENTITY',
              'INT NOT NULL',
              'FOREIGN KEY (course_id) REFERENCES Course (course_id)  ON UPDATE CASCADE ON DELETE CASCADE',
              'VARCHAR NOT NULL',
-             'TIMESTAMP NOT NULL']
+             'TIMESTAMP']
 
 
 createTable(table,columnNames,dataTypes)
@@ -91,7 +102,7 @@ dataTypes = [ 'INT UNIQUE GENERATED ALWAYS AS IDENTITY',
               'FOREIGN KEY (test_id) REFERENCES Test (test_id)  ON UPDATE CASCADE ON DELETE CASCADE',
               'FOREIGN KEY (student_course_id) REFERENCES Student_Course (student_course_id)  ON UPDATE CASCADE ON DELETE CASCADE',
               'PRIMARY KEY (test_id,student_course_id)',
-              'DECIMAL NOT NULL']
+              'DECIMAL NOT NULL CHECK (mark <= 7.0 AND mark >= 1.0)']
 
 createTable(table,columnNames,dataTypes)
 

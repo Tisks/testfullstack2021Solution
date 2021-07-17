@@ -13,7 +13,7 @@ export const listMark = async (req, res) => {
 export const getMarkUniqueId = async (req, res) => {
   console.log(req.params)
   const {mark_id} = req.params;
-  const conditions = `WHERE mark_id = '${mark_id}'`
+  const conditions = `WHERE mark_id = '${parseInt(mark_id)}'`
   try {
     const data = await markModel.selectAll(conditions);
     res.status(200).json({ messages: data.rows });
@@ -24,7 +24,7 @@ export const getMarkUniqueId = async (req, res) => {
 export const getMarkIds = async (req, res) => {
   console.log(req.params)
   const {test_id,student_course_id} = req.params;
-  const conditions = `WHERE test_id = '${test_id}' AND student_course_id = '${student_course_id}'`
+  const conditions = `WHERE test_id = '${parseInt(test_id)}' AND student_course_id = '${parseInt(student_course_id)}'`
   try {
     const data = await markModel.selectAll(conditions);
     res.status(200).json({ messages: data.rows });
@@ -34,9 +34,9 @@ export const getMarkIds = async (req, res) => {
 };
 export const addMark = async (req, res) => {
   console.log(req.body)
-  const { name } = req.body;
-  const columns = 'name';
-  const values = `'${name}'`;
+  const { student_course_id,test_id, mark } = req.body;
+  const columns = 'student_course_id,test_id, mark';
+  const values = `'${student_course_id}','${test_id}','${mark}'`;
   try {
     const data = await markModel.insertWithReturn(columns, values);
     res.status(200).json({ messages: data.rows });
@@ -52,7 +52,7 @@ export const updateMark = async (req, res) => {
   const {student_course_id,test_id,mark} = req.body
   const columns = 'student_course_id,test_id,mark';
   const values = `'${student_course_id}','${test_id}','${mark}'`;
-  const conditions = `mark_id = '${mark_id}'`
+  const conditions = `mark_id = '${parseInt(mark_id)}'`
   try {
     const data = await markModel.update(columns, values, conditions);
     res.status(200).json({ messages: data.rows });
@@ -64,7 +64,7 @@ export const updateMark = async (req, res) => {
 export const deleteMark = async (req, res) => {
   console.log( req.params)
   const { mark_id} =  req.params;
-  const conditions = `mark_id = '${mark_id}'`
+  const conditions = `mark_id = '${parseInt(mark_id)}'`
   try {
     const data = await markModel.delete(conditions);
     res.status(200).json({ messages: data.rows });
