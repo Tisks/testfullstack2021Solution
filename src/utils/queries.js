@@ -50,6 +50,17 @@ dataTypes = ['INT UNIQUE GENERATED ALWAYS AS IDENTITY',
 
 createTable(table, columnNames, dataTypes)
 
+table = 'Student_Subject'
+columnNames = ['student_subject_id','student_id','subject_id', 'CONSTRAINT cs_student_fk','CONSTRAINT cs_subject_fk', 'CONSTRAINT student_subject_pk']
+dataTypes = ['INT UNIQUE GENERATED ALWAYS AS IDENTITY',
+            'INT NOT NULL ',
+            'INT NOT NULL ',
+            'FOREIGN KEY (student_id) REFERENCES Student (student_id) ON UPDATE CASCADE ON DELETE CASCADE',
+            'FOREIGN KEY (subject_id) REFERENCES Subject (subject_id) ON UPDATE CASCADE ON DELETE CASCADE',
+            'PRIMARY KEY (student_id,subject_id)']
+
+createTable(table, columnNames, dataTypes)
+
 
 table = 'Course'
 columnNames = ['course_id','teacher_subject_id', 'CONSTRAINT cs_teacher_course_fk','name']
@@ -78,7 +89,7 @@ dataTypes = ['INT UNIQUE primary key  GENERATED ALWAYS AS IDENTITY',
              'INT NOT NULL',
              'FOREIGN KEY (course_id) REFERENCES Course (course_id)  ON UPDATE CASCADE ON DELETE CASCADE',
              'VARCHAR NOT NULL',
-             'TIMESTAMP NOT NULL']
+             'TIMESTAMP']
 
 
 createTable(table,columnNames,dataTypes)

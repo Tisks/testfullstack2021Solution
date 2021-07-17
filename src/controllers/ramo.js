@@ -14,7 +14,7 @@ export const listSubject = async (req, res) => {
 export const getSubject = async (req, res) => {
   console.log(req.params)
   const {subject_id} = req.params;
-  const conditions = `WHERE subject_id = '${subject_id}'`
+  const conditions = `WHERE subject_id = '${parseInt(subject_id)}'`
   try {
     const data = await subjectModel.selectAll(conditions);
     res.status(200).json({ messages: data.rows });
@@ -40,11 +40,11 @@ export const addSubject = async (req, res) => {
 export const updateSubject = async (req, res) => {
   console.log(req.params)
   console.log(req.body)
-  const subject_id =  req.params;
+  const {subject_id} =  req.params;
   const {name} = req.body
   const columns = 'name';
   const values = `'${name}'`;
-  const conditions = `subject_id = '${subject_id}'`
+  const conditions = `subject_id = '${parseInt(subject_id)}'`
   try {
     const data = await subjectModel.update(columns, values, conditions);
     res.status(200).json({ messages: data.rows });
@@ -56,7 +56,7 @@ export const updateSubject = async (req, res) => {
 export const deleteSubject = async (req, res) => {
   console.log( req.params)
   const { subject_id} =  req.params;
-  const conditions = `subject_id = '${subject_id}'`
+  const conditions = `subject_id = '${parseInt(subject_id)}'`
   try {
     const data = await subjectModel.delete(conditions);
     res.status(200).json({ messages: data.rows });

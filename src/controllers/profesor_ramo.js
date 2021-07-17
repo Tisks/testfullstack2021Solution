@@ -13,7 +13,7 @@ export const listTeacherSubject = async (req, res) => {
 export const getTeacherSubjectUniqueId = async (req, res) => {
   console.log(req.params)
   const {teacher_subject_id} = req.params;
-  const conditions = `WHERE teacher_subject_id = '${teacher_subject_id}'`
+  const conditions = `WHERE teacher_subject_id = '${parseInt(teacher_subject_id)}' `
   try {
     const data = await teacherSubjectModel.selectAll(conditions);
     res.status(200).json({ messages: data.rows });
@@ -26,12 +26,9 @@ export const getTeacherSubjectIds = async (req, res) => {
 
   const { teacher_id,subject_id } = req.params;
   
-  const columns = 'teacher_subject_id';
-  const values = `'${teacher_subject_id}'`;
-
-  const conditions = `WHERE teacher_id = '${teacher_id}' AND subject_id = '${subject_id}'`
+  const conditions = `WHERE teacher_id = '${parseInt(teacher_id)}' AND subject_id = '${parseInt(subject_id)}'`
   try {
-    const data = await teacherSubjectModel.select(columns, values, conditions);
+    const data = await teacherSubjectModel.selectAll(conditions);
     res.status(200).json({ messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });
@@ -60,7 +57,7 @@ export const updateTeacherSubject = async (req, res) => {
   const {teacher_subject_id} =  req.params;
   const columns = 'teacher_id, subject_id';
   const values = `'${teacher_id}','${subject_id}'`;
-  const conditions = `teacher_subject_id = '${teacher_subject_id}'`
+  const conditions = `teacher_subject_id = '${parseInt(teacher_subject_id)}'`
   try {
     const data = await teacherSubjectModel.update(columns, values, conditions);
     res.status(200).json({ messages: data.rows });
@@ -72,7 +69,7 @@ export const updateTeacherSubject = async (req, res) => {
 export const deleteTeacherSubject = async (req, res) => {
   console.log( req.params)
   const { teacher_subject_id} =  req.params;
-  const conditions = `teacher_subject_id = '${teacher_subject_id}'`
+  const conditions = `teacher_subject_id = '${parseInt(teacher_subject_id)}'`
   try {
     const data = await teacherSubjectModel.delete(conditions);
     res.status(200).json({ messages: data.rows });

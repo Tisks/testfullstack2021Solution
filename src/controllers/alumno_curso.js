@@ -13,7 +13,7 @@ export const studentCourseList = async (req, res) => {
 export const getStudentCourseUniqueId = async (req, res) => {
   console.log(req.params)
   const {student_course_id} = req.params;
-  const conditions = `WHERE student_course_id = '${student_course_id}'`
+  const conditions = `WHERE student_course_id = '${parseInt(student_course_id)}'`
   try {
     const data = await studentCourse.selectAll(conditions);
     res.status(200).json({ messages: data.rows });
@@ -26,12 +26,9 @@ export const getStudentCourseIds = async (req, res) => {
 
   const { student_id,course_id } = req.params;
   
-  const columns = 'student_course_id';
-  const values = `'${student_course_id}'`;
-
-  const conditions = `WHERE student_id = '${student_id}' AND course_id = '${course_id}'`
+  const conditions = `WHERE student_id = '${parseInt(student_id)}' AND course_id = '${parseInt(course_id)}'`
   try {
-    const data = await studentCourse.select(columns, values, conditions);
+    const data = await studentCourse.selectAll(conditions);
     res.status(200).json({ messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });
@@ -59,7 +56,7 @@ export const updateStudentCourse = async (req, res) => {
   const {student_course_id} =  req.params;
   const columns = 'student_id, course_id';
   const values = `'${student_id}','${course_id}'`;
-  const conditions = `student_course_id = '${student_course_id}'`
+  const conditions = `student_course_id = '${parseInt(student_course_id)}'`
   try {
     const data = await studentCourse.update(columns, values, conditions);
     res.status(200).json({ messages: data.rows });
@@ -71,7 +68,7 @@ export const updateStudentCourse = async (req, res) => {
 export const deleteStudentCourse = async (req, res) => {
   console.log( req.params)
   const { student_course_id} =  req.params;
-  const conditions = `student_course_id = '${student_course_id}'`
+  const conditions = `student_course_id = '${parseInt(student_course_id)}'`
   try {
     const data = await studentCourse.delete(conditions);
     res.status(200).json({ messages: data.rows });

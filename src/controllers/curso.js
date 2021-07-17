@@ -13,7 +13,7 @@ export const listCourse = async (req, res) => {
 export const getCourse = async (req, res) => {
   console.log(req.params)
   const {course_id} = req.params;
-  const conditions = `WHERE course_id = '${course_id}'`
+  const conditions = `WHERE course_id = '${parseInt(course_id)}'`
   try {
     const data = await courseModel.selectAll(conditions);
     res.status(200).json({ messages: data.rows });
@@ -43,7 +43,7 @@ export const updateCourse = async (req, res) => {
   const {course_id} =  req.params;
   const columns = 'teacher_subject_id, name';
   const values = `'${teacher_subject_id}','${name}'`;
-  const conditions = `course_id = '${course_id}'`
+  const conditions = `course_id = '${parseInt(course_id)}'`
   try {
     const data = await courseModel.update(columns, values, conditions);
     res.status(200).json({ messages: data.rows });
@@ -55,7 +55,7 @@ export const updateCourse = async (req, res) => {
 export const deleteCourse = async (req, res) => {
   console.log( req.params)
   const { course_id} =  req.params;
-  const conditions = `course_id = '${course_id}'`
+  const conditions = `course_id = '${parseInt(course_id)}'`
   try {
     const data = await courseModel.delete(conditions);
     res.status(200).json({ messages: data.rows });

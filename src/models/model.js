@@ -15,8 +15,9 @@ class Model {
     return this.pool.query(query);
   }
   async selectAll(clause) {
-    let query = `SELECT * FROM ${this.table}`;
+    let query = `SELECT * FROM ${this.table} `;
     if (clause) query += clause;
+    console.log(query)
     return this.pool.query(query);
   }
   async insertWithReturn(columns, values) {
