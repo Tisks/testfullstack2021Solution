@@ -1,5 +1,6 @@
 # testfullstack2021Solution
 https://github.com/capitaria/testfullstack2021/edit/main/test-fullstack.md
+
 Un colegio necesita un sistema para administrar sus cursos. El
 sistema tiene que soportar que se ingresen varios cursos. Cada curso
 tendrá un profesor a cargo y una serie de alumnos inscritos. Cada
@@ -14,6 +15,9 @@ Escriba a continuación las tablas que utilizaría para resolver este
 problema con los campos y llaves de éstas. Intente hacer el sistema lo
 más robusto posible, pero sin incluir datos adicionales a los que se
 plantean acá.
+
+![Screenshot](testfullstack_MER.png)
+
 
 ## SQL
 
