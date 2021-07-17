@@ -22,13 +22,13 @@ var createTable = (tableName, columnNames, dataTypes) => {
 }
 
 let table = 'Student'
-let columnNames = ['student_id', 'name', 'lastName']
+let columnNames = ['student_id', 'name', 'last_name']
 let dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY', 'VARCHAR NOT NULL', 'VARCHAR NOT NULL']
 
 createTable(table, columnNames, dataTypes)
 
 table = 'Teacher'
-columnNames = ['teacher_id', 'name', 'lastName']
+columnNames = ['teacher_id', 'name', 'last_name']
 dataTypes = ['INT primary key GENERATED ALWAYS AS IDENTITY', 'VARCHAR NOT NULL', 'VARCHAR NOT NULL']
 
 createTable(table, columnNames, dataTypes)
@@ -91,7 +91,7 @@ dataTypes = [ 'INT UNIQUE GENERATED ALWAYS AS IDENTITY',
               'FOREIGN KEY (test_id) REFERENCES Test (test_id)  ON UPDATE CASCADE ON DELETE CASCADE',
               'FOREIGN KEY (student_course_id) REFERENCES Student_Course (student_course_id)  ON UPDATE CASCADE ON DELETE CASCADE',
               'PRIMARY KEY (test_id,student_course_id)',
-              'DECIMAL NOT NULL']
+              'DECIMAL NOT NULL CHECK (mark <= 7.0 AND mark >= 1.0)']
 
 createTable(table,columnNames,dataTypes)
 
