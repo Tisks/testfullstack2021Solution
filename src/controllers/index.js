@@ -4,6 +4,7 @@ export * from './profesor';
 export * from './curso';
 export * from './profesor_ramo';
 export * from './alumno_curso';
+export * from './alumno_ramo';
 export * from './prueba';
 export * from './ramo';
 export * from './nota';
