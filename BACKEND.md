@@ -587,7 +587,31 @@ Retorno: JSON que contiene el identificador enviado (mark_id), prueba (test_id),
 
 localhost:3000/nota
 
-Retorno: JSON que contiene todos los registros de pruebas de la tabla Mark ((mark_id), prueba (test_id), relacion alumno-curso (student_course_id) y nota del 1.0 al 7.0 (mark))
+Retorno: JSON que contiene todos los registros de notas de la tabla Mark ((mark_id), prueba (test_id), relacion alumno-curso (student_course_id) y nota del 1.0 al 7.0 (mark))
+
+## FUNCIONALIDAD: Listar a los alumnos junto a su promedio de notas.
+
+**GET /lista_promedio_general_alumnos**
+
+localhost:3000/lista_promedio_general_alumnos
+
+Retorno: JSON que contiene todos los registros de promedio de notas. Se entrega el identificador del estudiante (student_id), nombre (name), apellido (last_name) y el promedio de notas del 1.0 al 7.0 (mark)
+
+El promedio de notas de cada alumno es el promedio de la suma de todas sus notas (independiente del curso) y por ende, se llama promedio general
+
+Esto es debido a que se "Todas las pruebas valen lo mismo" y es equivalente a realizar los promedios de las notas de cada curso y luego promediar esas notas
+
+
+## FUNCIONALIDAD: Filtar a todos los alumnos con más de un ramo con promedio rojo
+
+**GET /filtro_ramos_promedio_rojo_alumnos**
+
+localhost:3000/filtro_ramos_promedio_rojo_alumnos
+
+Retorno: JSON que contiene todos los registros de alumnos que cumplen con la condicion de que tienen más de un ramo con promedio rojo de notas. 
+Se entrega el identificador del estudiante (student_id), nombre (name), apellido (last_name)
+
+Un alumno puede estar en muchos cursos pero solo en un curso de un ramo a la ves, es decir, no puede inscribirse a 2 cursos del mismo ramo. Por ello es que el calculo del promedio de las notas de un curso es equivalente a tener el promedio de un ramo.
 
 **POST /nota**
 
