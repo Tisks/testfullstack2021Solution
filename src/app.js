@@ -7,6 +7,8 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(indexRouter);
+app.use(express.static(__dirname + '/routes/agenda'));
+
 app.use((err, req, res, next) => {
     res.status(400).json({ error: err.stack });
 });
