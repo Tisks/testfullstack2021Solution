@@ -55,8 +55,8 @@ export const updateTeacherSubject = async (req, res) => {
   console.log(req.body)
   const { teacher_id,subject_id } = req.body;
   const {teacher_subject_id} =  req.params;
-  const columns = 'teacher_id, subject_id';
-  const values = `'${teacher_id}','${subject_id}'`;
+  const columns = ['teacher_id', 'subject_id']
+  const values = [teacher_id,subject_id]
   const conditions = `teacher_subject_id = '${parseInt(teacher_subject_id)}'`
   try {
     const data = await teacherSubjectModel.update(columns, values, conditions);

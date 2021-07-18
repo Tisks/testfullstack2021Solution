@@ -37,12 +37,13 @@ export const addCourse = async (req, res) => {
 
 
 export const updateCourse = async (req, res) => {
+  console.log('query curso')
   console.log(req.params)
   console.log(req.body)
   const { teacher_subject_id,name } = req.body;
   const {course_id} =  req.params;
-  const columns = 'teacher_subject_id, name';
-  const values = `'${teacher_subject_id}','${name}'`;
+  const columns = ['teacher_subject_id', 'name']
+  const values = [teacher_subject_id,name]
   const conditions = `course_id = '${parseInt(course_id)}'`
   try {
     const data = await courseModel.update(columns, values, conditions);

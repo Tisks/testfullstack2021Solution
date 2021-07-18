@@ -10,6 +10,9 @@ import cursoRouter from './curso';
 import pruebaRouter from './prueba';
 import alumnoCursoRouter from './alumno_curso';
 import profesorRamoRouter from './profesor_ramo';
+import filtroRouter from './compuestas/filtrar';
+import listaRouter from './compuestas/listar';
+
 import { testEnvironmentVariable } from '../settings';
 
 indexRouter.use(profesorRouter)
@@ -20,6 +23,8 @@ indexRouter.use(cursoRouter)
 indexRouter.use(pruebaRouter)
 indexRouter.use(alumnoCursoRouter)
 indexRouter.use(profesorRamoRouter)
+indexRouter.use(filtroRouter)
+indexRouter.use(listaRouter)
 indexRouter.get('/', function(req, res, next) {
     console.log('entre')
     return res.status(200).json({ message: testEnvironmentVariable });

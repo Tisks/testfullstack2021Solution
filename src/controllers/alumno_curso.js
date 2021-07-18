@@ -38,8 +38,9 @@ export const getStudentCourseIds = async (req, res) => {
 export const addStudentCourse = async (req, res) => {
   console.log(req.body)
   const { student_id,course_id } = req.body;
-  const columns = 'student_id,course_id';
+  const columns = 'student_id,course_id'
   const values = `'${student_id}','${course_id}'`;
+
   try {
     const data = await studentCourse.insertWithReturn(columns, values);
     res.status(200).json({ messages: data.rows });
@@ -54,8 +55,8 @@ export const updateStudentCourse = async (req, res) => {
   console.log(req.body)
   const { student_id,course_id } = req.body;
   const {student_course_id} =  req.params;
-  const columns = 'student_id, course_id';
-  const values = `'${student_id}','${course_id}'`;
+  const columns = ['student_id', 'course_id'];
+  const values = [student_id,course_id]
   const conditions = `student_course_id = '${parseInt(student_course_id)}'`
   try {
     const data = await studentCourse.update(columns, values, conditions);

@@ -40,9 +40,9 @@ export const updateTest = async (req, res) => {
   console.log(req.params)
   console.log(req.body)
   const {test_id} =  req.params;
-  const {course_id,title} = req.body
-  const columns = 'course_id,title';
-  const values = `'${course_id}','${title}'`;
+  const {course_id,title,date} = req.body
+  const columns = ['course_id','title','date'];
+  const values = [course_id,title,date];
   const conditions = `test_id = '${parseInt(test_id)}'`
   try {
     const data = await testModel.update(columns, values, conditions);

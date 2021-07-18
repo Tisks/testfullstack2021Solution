@@ -42,8 +42,8 @@ export const updateSubject = async (req, res) => {
   console.log(req.body)
   const {subject_id} =  req.params;
   const {name} = req.body
-  const columns = 'name';
-  const values = `'${name}'`;
+  const columns = ['name'];
+  const values = [name];
   const conditions = `subject_id = '${parseInt(subject_id)}'`
   try {
     const data = await subjectModel.update(columns, values, conditions);
