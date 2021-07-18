@@ -466,7 +466,7 @@ localhost:3000/alumno_curso
 | Parametro (body)       | Tipo   | Descripción                                  | 
 |------------------- ----|--------|----------------------------------------------|
 | student_id             | Entero | (obligatorio) Identificador unico del alumno |
-| course_id              | Entero | (obligatorio) Identificador unico del curso |
+| course_id              | Entero | (obligatorio) Identificador unico del curso  |
 
 Retorno: JSON que contiene el identificador unico creado para la relacion alumno-curso (student_course_id), alumno (teacher_subject_id) y curso (course_id)
 Ej:
@@ -487,7 +487,7 @@ localhost:3000/alumno_curso/{student_course_id}
 | student_course_id  | Entero | Identificador unico de la relacion alumno-curso  |
 
 | Parametro (body)       | Tipo   | Descripción                                  | 
-|------------------- ----|--------|----------------------------------------------|
+|------------------------|--------|----------------------------------------------|
 | student_id             | Entero | (obligatorio) Identificador unico del alumno |
 | course_id              | Entero | (obligatorio) Identificador unico del curso  |
 
@@ -589,7 +589,7 @@ localhost:3000/nota
 
 Retorno: JSON que contiene todos los registros de notas de la tabla Mark ((mark_id), prueba (test_id), relacion alumno-curso (student_course_id) y nota del 1.0 al 7.0 (mark))
 
-## FUNCIONALIDAD: Listar a los alumnos junto a su promedio de notas.
+**FUNCIONALIDAD: Listar a los alumnos junto a su promedio de notas**
 
 **GET /lista_promedio_general_alumnos**
 
@@ -602,7 +602,7 @@ El promedio de notas de cada alumno es el promedio de la suma de todas sus notas
 Esto es debido a que se "Todas las pruebas valen lo mismo" y es equivalente a realizar los promedios de las notas de cada curso y luego promediar esas notas
 
 
-## FUNCIONALIDAD: Filtar a todos los alumnos con más de un ramo con promedio rojo
+**FUNCIONALIDAD: Filtar a todos los alumnos con más de un ramo con promedio rojo**
 
 **GET /filtro_ramos_promedio_rojo_alumnos**
 
