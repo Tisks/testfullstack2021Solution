@@ -107,7 +107,8 @@ En caso de las listas de registros existentes en una tabla, se responde con un f
 
 ## Student
 
-GET /alumno/{student_id}
+**GET /alumno/{student_id}**
+
 localhost:3000/alumno/{student_id}
 
 | Campo      | Tipo   | Descripción                    |
@@ -116,12 +117,14 @@ localhost:3000/alumno/{student_id}
 
 Retorno: JSON que contiene el identificador enviado (student_id), nombre (name) y apellido (last_name) del alumno
 
-GET /lista_alumnos
+**GET /lista_alumnos**
+
 localhost:3000/lista_alumnos
 
 Retorno: JSON que contiene todos los registros de alumnos de la tabla Student(identificador (student_id), nombre (name) y apellido (last_name))
 
-POST /alumno
+**POST /alumno**
+
 localhost:3000/alumno
 
 | Parametro (body) | Tipo   | Descripción                                  | 
@@ -139,7 +142,8 @@ Ej:
 }
 ```
 
-PUT /alumno/{student_id}
+**PUT /alumno/{student_id}**
+
 localhost:3000/alumno/{student_id}
 
 | Campo      | Tipo   | Descripción                    |
@@ -153,7 +157,8 @@ localhost:3000/alumno/{student_id}
 
 Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente la modificacion o se dio un error
 
-DELETE /alumno/{student_id}
+**DELETE /alumno/{student_id}**
+
 localhost:3000/alumno/{student_id}
 
 | Campo      | Tipo   | Descripción                    |
@@ -165,7 +170,8 @@ Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente 
 
 ## Teacher
 
-GET /profesor/{teacher_id}
+**GET /profesor/{teacher_id}**
+
 localhost:3000/alumno/{teacher_id}
 
 | Campo      | Tipo   | Descripción                      |
@@ -174,12 +180,14 @@ localhost:3000/alumno/{teacher_id}
 
 Retorno: JSON que contiene el identificador enviado (teacher_id), nombre (name) y apellido (last_name) del profesor
 
-GET /lista_profesores
+**GET /lista_profesores**
+
 localhost:3000/lista_profesores
 
 Retorno: JSON que contiene todos los registros de alumnos de la tabla Teacher (identificador (student_id), nombre (name) y apellido (last_name))
 
-POST /profesor
+**POST /profesor**
+
 localhost:3000/profesor
 
 | Parametro (body) | Tipo   | Descripción                                  | 
@@ -197,7 +205,8 @@ Ej
 }
 ```
 
-PUT /profesor/{teacher_id}
+**PUT /profesor/{teacher_id}**
+
 localhost:3000/profesor/{teacher_id}
 
 | Campo      | Tipo   | Descripción                      |
@@ -211,7 +220,8 @@ localhost:3000/profesor/{teacher_id}
 
 Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente la modificacion o se dio un error
 
-DELETE /profesor/{teacher_id}
+**DELETE /profesor/{teacher_id}**
+
 localhost:3000/profesor/{teacher_id}
 
 | Campo      | Tipo   | Descripción                      |
@@ -223,7 +233,8 @@ Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente 
 
 ## Subject
 
-GET /ramo/{subject_id}
+**GET /ramo/{subject_id}**
+
 localhost:3000/ramo/{subject_id}
 
 | Campo      | Tipo   | Descripción                      |
@@ -232,12 +243,14 @@ localhost:3000/ramo/{subject_id}
 
 Retorno: JSON que contiene el identificador enviado (subject_id) y el nombre (name) del ramo
 
-GET /lista_ramos
+**GET /lista_ramos**
+
 localhost:3000/lista_ramos
 
 Retorno: JSON que contiene todos los registros de ramos de la tabla Subject (identificador (subject_id) y nombre (name))
 
-POST /ramo
+**POST /ramo**
+
 localhost:3000/ramo
 
 | Parametro (body) | Tipo   | Descripción                                  | 
@@ -253,7 +266,8 @@ Retorno: JSON que contiene el identificador unico creado para el ramo (subject_i
 }
 ```
 
-PUT /ramo/{subject_id}
+**PUT /ramo/{subject_id}**
+
 localhost:3000/ramo/{subject_id}
 
 | Campo      | Tipo   | Descripción                      |
@@ -266,7 +280,8 @@ localhost:3000/ramo/{subject_id}
 
 Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente la modificacion o se dio un error
 
-DELETE /ramo/{subject_id}
+**DELETE /ramo/{subject_id}**
+
 localhost:3000/ramo/{subject_id}
 
 | Campo      | Tipo   | Descripción                      |
@@ -278,7 +293,8 @@ Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente 
 
 ## Teacher_Subject
 
-GET /profesor_ramo/{teacher_subject_id}
+**GET /profesor_ramo/{teacher_subject_id}**
+
 localhost:3000/ramo/{teacher_subject_id}
 
 | Campo              | Tipo   | Descripción                                          |
@@ -287,7 +303,8 @@ localhost:3000/ramo/{teacher_subject_id}
 
 Retorno: JSON que contiene el identificador enviado (teacher_subject_id), identificador del ramo (subject_id) y del profesor (teacher_id)
 
-GET /profesor_ramo/{teacher_id}/{subject_id}
+**GET /profesor_ramo/{teacher_id}/{subject_id}**
+
 localhost:3000/ramo/{teacher_subject_id}
 
 | Campo      | Tipo   | Descripción                      |
@@ -298,12 +315,14 @@ localhost:3000/ramo/{teacher_subject_id}
 Retorno: JSON que contiene el identificador unico de la relacion profesor-ramo (teacher_subject_id)
 
 
-GET /lista_profesores_ramos
+**GET /lista_profesores_ramos**
+
 localhost:3000/lista_profesores_ramos
 
 Retorno: JSON que contiene todos los registros de ramos de la tabla Teacher_Subject (identificador (teacher_subject_id), identificador del ramo (subject_id) y del profesor (teacher_id))
 
-POST /profesor_ramo
+**POST /profesor_ramo**
+
 localhost:3000/profesor_ramo
 
 | Parametro (body) | Tipo   | Descripción                                    | 
@@ -320,7 +339,8 @@ Retorno: JSON que contiene el identificador unico creado para la relacion profes
 }
 ```
 
-PUT /profesor_ramo/{teacher_subject_id}
+**PUT /profesor_ramo/{teacher_subject_id}**
+
 localhost:3000/profesor_ramo/{teacher_subject_id}
 
 | Campo              | Tipo   | Descripción                                          |
@@ -335,7 +355,8 @@ localhost:3000/profesor_ramo/{teacher_subject_id}
 
 Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente la modificacion o se dio un error
 
-DELETE /profesor_ramo/{teacher_subject_id}
+**DELETE /profesor_ramo/{teacher_subject_id}**
+
 localhost:3000/profesor_ramo/{teacher_subject_id}
 
 | Campo              | Tipo   | Descripción                                          |
@@ -347,7 +368,8 @@ Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente 
 
 ## Course
 
-GET /curso/{course_id}
+**GET /curso/{course_id}**
+
 localhost:3000/curso/{course_id}
 
 | Campo      | Tipo   | Descripción                    |
@@ -356,12 +378,14 @@ localhost:3000/curso/{course_id}
 
 Retorno: JSON que contiene el identificador enviado (course_id) y de la relacion profesor-ramo (teacher_subject_id) y nombre (name) del curso 
 
-GET /lista_cursos
+**GET /lista_cursos**
+
 localhost:3000/lista_cursos
 
 Retorno: JSON que contiene todos los registros de alumnos de la tabla Course (identificador (course_id), relacion profesor-ramo (teacher_subject_id) y nombre (name) del curso ))
 
-POST /curso
+**POST /curso**
+
 localhost:3000/curso
 
 | Parametro (body)               | Tipo   | Descripción                                  | 
@@ -379,7 +403,8 @@ Ej:
 }
 ```
 
-PUT /curso/{course_id}
+**PUT /curso/{course_id}**
+
 localhost:3000/curso/{course_id}
 
 | Campo      | Tipo   | Descripción                    |
@@ -393,7 +418,8 @@ localhost:3000/curso/{course_id}
 
 Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente la modificacion o se dio un error
 
-DELETE /curso/{course_id}
+**DELETE /curso/{course_id}**
+
 localhost:3000/curso/{course_id}
 
 | Campo      | Tipo   | Descripción                    |
