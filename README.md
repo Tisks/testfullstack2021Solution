@@ -18,6 +18,17 @@ plantean acá.
 
 ![Screenshot](testfullstack_MER.png)
 
+1. Student: Tabla que representa a los alumnos. Llave primaria entero unico de identificador. Campos: name (nombres), last_name (apellidos), ambos cadenas de caracteres.
+2. Teacher: Tabla que representa a los profesores. Llave primaria entero unico de identificador. Campos: name (nombres), last_name (apellidos), ambos cadenas de caracteres.
+3. Subject: Tabla que representa los ramos existentes, un ramo es la materia a enseñar (Ej: Matematica, Lenguaje, Fisica, Quimica, etc). Llave primaria entero unico de identificador. Campos: name (nombre).
+4. Student_Teacher: Tabla que representa la asociacion entre alumnos y ramos. Llave primaria entero unico de identificador. Llave primaria compuesta student_id y subject_id por lo que no se puede asignar mas de una ves un estudiante a un ramo. Campos: Llaves foraneas student_id (identificador del alumno) y subject_id (identificador del ramo).
+5. Teacher_Subject: Tabla que representa la asociacion entre profesores y ramos. Llave primaria compuesta teacher_id y subject_id por lo que no se puede asignar mas de una ves un profesor a un ramo en especifico. Campos: Llaves foraneas teacher_id (identificador del profesor) y subject_id (identificador del ramo) y un identificador entero unico para cada asociacion profesor-ramo (teacher_subject_id)
+6. Course: Tabla que representa los cursos. Un curso en este contexto es una instancia de enseñanza de un ramo impartido por un profesor (Ej: profesor que enseña matematica imparte un curso llamado 'A-2'). Llave primaria entero unico de identificador (course_id). Campos: Llave foranea teacher_subject_id (identificador de la tabla intermedia Teacher_Subject) y subject_id (identificador del ramo) y un nombre. Debido a que no tiene una llave primaria compuesta un profesor que imparte un ramo puede enseñar en varios cursos.
+7. Student_Course: Tabla que representa la asociacion entre alumnos y cursos. Llave primaria compuesta student_id y course_id por lo que no se puede asignar mas de una ves un alumno especifico a un curso en especifico para evitar duplicidades. Campos: Llaves foraneas student_id (identificador del alumno) y course_id (identificador del curso) y un identificador entero unico para cada asociacion alumno-curso (student_course_id)
+8. Test: Tabla que representa a las pruebas. Llave primaria entero unico de identificador (test_id). Campos: Llave foranea course_id (identificador de la tabla Course), title (titulo de la prueba) y date (fecha en la que se da la prueba). Un curso puede tener una cantidad no determinada de pruebas pero una prueba pertenece solamente a un curso.
+9. Mark: Tabla que representa a las notas. Llave primaria compuesta test_id y student_course_id por lo que no se puede poner mas de una nota a una misma prueba asociada a un alumno y curso especificos para evitar duplicidades. Campos: Llaves foraneas test_id (identificador de la prueba) y student_course_id (identificador de la asociacion alumno-curso), un identificador entero unico (mark_id) y la nota en si (mark) la cual esta entre un 1.0 y un 7.0. 
+
+**Nota:** Cuando se asocia a un alumno a un curso, se crea la asociacion entre este alumno y el ramo asociado al curso. Un alumno no puede estar asociado a 2 cursos de un ramo al mismo tiempo.
 
 ## SQL
 
