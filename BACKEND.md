@@ -295,7 +295,7 @@ Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente 
 
 **GET /profesor_ramo/{teacher_subject_id}**
 
-localhost:3000/ramo/{teacher_subject_id}
+localhost:3000/profesor_ramo/{teacher_subject_id}
 
 | Campo              | Tipo   | Descripción                                          |
 |--------------------|--------|------------------------------------------------------|
@@ -305,7 +305,7 @@ Retorno: JSON que contiene el identificador enviado (teacher_subject_id), identi
 
 **GET /profesor_ramo/{teacher_id}/{subject_id}**
 
-localhost:3000/ramo/{teacher_subject_id}
+localhost:3000/profesor_ramo/{teacher_id}/{subject_id}
 
 | Campo      | Tipo   | Descripción                      |
 |------------|--------|----------------------------------|
@@ -430,8 +430,210 @@ Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente 
 
 **Nota:** Al borrar un curso no se elimina la relacion profesor-ramo Teacher_Subject, solo las Pruebas asociadas, alumnos inscritos (Student_Course) y sus notas (Mark)
 
+## Student_Course
 
+**GET /alumno_curso/{student_course_id}**
 
+localhost:3000/alumno_curso/{student_course_id}
 
+| Campo              | Tipo   | Descripción                                      |
+|--------------------|--------|--------------------------------------------------|
+| student_course_id  | Entero | Identificador unico de la relacion alumno-curso  |
 
+Retorno: JSON que contiene el identificador enviado (student_course_id), alumno (student_id) y curso (course_id) del curso 
+
+**GET /alumno_curso/{student_id}/{course_id}**
+
+localhost:3000/alumno_curso/{student_id}/{course_id}
+
+| Campo      | Tipo   | Descripción                      |
+|------------|--------|----------------------------------|
+| student_id | Entero | Identificador unico del alumno   |
+| course_id  | Entero | Identificador unico del curso    |
+
+Retorno: JSON que contiene el identificador unico de la relacion alumno-curso (student_course_id)
+
+**GET /lista_alumnos_cursos**
+
+localhost:3000/lista_alumnos_cursos
+
+Retorno: JSON que contiene todos los registros de la relacion alumno-curso de la tabla Student_Course (identificador (student_course_id), alumno (student_id) y curso (course_id) del curso)
+
+**POST /alumno_curso**
+
+localhost:3000/alumno_curso
+
+| Parametro (body)       | Tipo   | Descripción                                  | 
+|------------------- ----|--------|----------------------------------------------|
+| student_id             | Entero | (obligatorio) Identificador unico del alumno |
+| course_id              | Entero | (obligatorio) Identificador unico del curso |
+
+Retorno: JSON que contiene el identificador unico creado para la relacion alumno-curso (student_course_id), alumno (teacher_subject_id) y curso (course_id)
+Ej:
+```
+{
+  messages:[
+    {student_course_id: 3, student_id: 1, course_id: 3}
+  ]
+}
+```
+
+**PUT /alumno_curso/{student_course_id}**
+
+localhost:3000/alumno_curso/{student_course_id}
+
+| Campo              | Tipo   | Descripción                                      |
+|--------------------|--------|--------------------------------------------------|
+| student_course_id  | Entero | Identificador unico de la relacion alumno-curso  |
+
+| Parametro (body)       | Tipo   | Descripción                                  | 
+|------------------- ----|--------|----------------------------------------------|
+| student_id             | Entero | (obligatorio) Identificador unico del alumno |
+| course_id              | Entero | (obligatorio) Identificador unico del curso  |
+
+Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente la modificacion o se dio un error
+
+**DELETE /alumno_curso/{student_course_id}**
+
+localhost:3000/alumno_curso/{student_course_id}
+
+| Campo              | Tipo   | Descripción                                      |
+|--------------------|--------|--------------------------------------------------|
+| student_course_id  | Entero | Identificador unico de la relacion alumno-curso  |
+
+Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente la eliminacion del registro de la relacion alumno-curso o se dio un error.
+
+**Nota:** Al borrar una de estas relaciones se elimina la relacion de este alumno y el ramo (student_subject) y sus notas del curso (mark)
+
+## Test
+
+**GET /prueba/{test_id}**
+
+localhost:3000/prueba/{test_id}
+
+| Campo      | Tipo   | Descripción                       |
+|------------|--------|-----------------------------------|
+| test_id    | Entero | Identificador unico de la prueba  |
+
+Retorno: JSON que contiene el identificador enviado (test_id), curso (course_id), titulo de la prueba (title) y fecha en que se da la prueba (date)
+
+**GET /prueba**
+
+localhost:3000/prueba
+
+Retorno: JSON que contiene todos los registros de pruebas de la tabla Test (identificador (test_id), curso (course_id), titulo de la prueba (title) y fecha en que se da la prueba (date))
+
+**POST /prueba**
+
+localhost:3000/prueba
+
+| Parametro (body)               | Tipo                       | Descripción                                  | 
+|--------------------------------|----------------------------|----------------------------------------------|
+| course_id                      | Entero                     | (obligatorio) Nombre del alumno              |
+| title                          | String                     | (obligatorio) Apellido del alumno            |
+| date                           | Formato TIMESTAMP (string) | (opcional) fecha en que se da la prueba      |
+
+Retorno: JSON que contiene el identificador unico creado para la prueba (test_id), curso (course_id), relacion profesor-ramo (teacher_subject_id) y nombre (name) del curso
+Ej:
+```
+{
+  messages:[
+    {test_id: 1, course_id: 3, title: 'PEP I: Introduccion derivadas e integrales', date: '2021/09/10'}
+  ]
+}
+```
+
+**PUT /prueba/{course_id}**
+
+localhost:3000/prueba/{test_id}
+
+| Campo      | Tipo   | Descripción                       |
+|------------|--------|-----------------------------------|
+| test_id    | Entero | Identificador unico de la prueba  |
+
+| Parametro (body)               | Tipo                       | Descripción                                  | 
+|--------------------------------|----------------------------|----------------------------------------------|
+| course_id                      | Entero                     | (obligatorio) Nombre del alumno              |
+| title                          | String                     | (obligatorio) Apellido del alumno            |
+| date                           | Formato TIMESTAMP (string) | (opcional) fecha en que se da la prueba      |
+
+Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente la modificacion o se dio un error
+
+**DELETE /prueba/{test_id}**
+
+localhost:3000/prueba/{test_id}
+
+| Campo      | Tipo   | Descripción                       |
+|------------|--------|-----------------------------------|
+| test_id    | Entero | Identificador unico de la prueba  |
+
+Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente la eliminacion de la prueba o se dio un error.
+
+**Nota:** Al borrar una prueba no se elimina el curso, solo las notas asociadas a esta prueba
+
+## Mark
+
+**GET /nota/{mark_id}**
+
+localhost:3000/nota/{mark_id}
+
+| Campo      | Tipo   | Descripción                       |
+|------------|--------|-----------------------------------|
+| mark_id    | Entero | Identificador unico de la nota    |
+
+Retorno: JSON que contiene el identificador enviado (mark_id), prueba (test_id), relacion alumno-curso (student_course_id) y nota del 1.0 al 7.0 (mark)
+
+**GET /nota**
+
+localhost:3000/nota
+
+Retorno: JSON que contiene todos los registros de pruebas de la tabla Mark ((mark_id), prueba (test_id), relacion alumno-curso (student_course_id) y nota del 1.0 al 7.0 (mark))
+
+**POST /nota**
+
+localhost:3000/nota
+
+| Parametro (body)               | Tipo      | Descripción                                                   | 
+|--------------------------------|-----------|---------------------------------------------------------------|
+| test_id                        | Entero    | (obligatorio) identificador unico de la prueba                |
+| student_course_id              | Entero    | (obligatorio) identificador unico de la relacion alumno-curso |
+| mark                           | Decimal   | (obligatorio) nota del 1.0 al 7.0                             |
+
+Retorno: JSON que contiene el identificador unico creado para la nota (mark_id), prueba (test_id), relacion alumno-curso (student_course_id) y nota del 1.0 al 7.0 (mark))
+Ej:
+```
+{
+  messages:[
+    {mark_id: 1, test_id: 1, student_course_id: 3, mark: 5.5}
+  ]
+}
+```
+
+**PUT /nota/{mark_id}**
+
+localhost:3000/nota/{mark_id}
+
+| Campo      | Tipo   | Descripción                       |
+|------------|--------|-----------------------------------|
+| mark_id    | Entero | Identificador unico de la nota    |
+
+| Parametro (body)               | Tipo      | Descripción                                                   | 
+|--------------------------------|-----------|---------------------------------------------------------------|
+| test_id                        | Entero    | (obligatorio) identificador unico de la prueba                |
+| student_course_id              | Entero    | (obligatorio) identificador unico de la relacion alumno-curso |
+| mark                           | Decimal   | (obligatorio) nota del 1.0 al 7.0                             |
+
+Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente la modificacion o se dio un error
+
+**DELETE /nota/{mark_id}**
+
+localhost:3000/nota/{mark_id}
+
+| Campo      | Tipo   | Descripción                       |
+|------------|--------|-----------------------------------|
+| mark_id    | Entero | Identificador unico de la nota    |
+
+Retorno: Respuesta en el campo 'messages' de que se completo satisfactoriamente la eliminacion de la nota o se dio un error.
+
+**Nota:** Al borrar una nota no se elimina la prueba a la que esta asociada ni la relacion alumno-curso
 
