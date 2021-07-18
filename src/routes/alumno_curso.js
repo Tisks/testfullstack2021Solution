@@ -3,7 +3,7 @@ import {studentCourseList,getStudentCourseUniqueId,getStudentCourseIds,
     addStudentSubject,addStudentCourse,updateStudentCourse,deleteStudentCourse} from '../controllers';
 import {checkSubscribedSubject} from '../middleware';
 const alumnoCursoRouter = express.Router();
-alumnoCursoRouter.get('/lista_alumnos_curso',studentCourseList);
+alumnoCursoRouter.get('/lista_alumnos_cursos',studentCourseList);
 
 
 alumnoCursoRouter.get('/alumno_curso/:student_course_id',getStudentCourseUniqueId);

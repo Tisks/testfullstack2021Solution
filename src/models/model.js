@@ -33,6 +33,11 @@ class Model {
   }
   async update(columns, values, conditions) {
     //Verificar que funcione
+    console.log('Linea 36')
+
+    console.log(columns)
+    console.log(values)
+
     let single_column
     let single_value
     let query = `
@@ -41,11 +46,20 @@ class Model {
     for (let i = 0; i < columns.length; i++) {
       single_column = columns[i];
       single_value = values[i];
-      if(single_value !== 'undefined'){
-        query+= `${single_column} = ${single_value}, `
+      
+      if(single_value !== undefined){
+        if(i+1 === columns.length){
+          query+= `${single_column} = '${single_value}' `
+        }
+        else{
+          query+= `${single_column} = '${single_value}', `
+        }
+      }
+      else if (single_value === undefined && i+1 === columns.length){
+          query = query.substring(0,query.length-2)
       }
     }
-    query+= `WHERE ${conditions}`
+    query+= ` WHERE ${conditions}`
     console.log('Linea 46: ', query)
     return this.pool.query(query);
   }

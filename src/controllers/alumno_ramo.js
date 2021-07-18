@@ -38,7 +38,7 @@ export const getStudentSubjectIds = async (req, res) => {
 export const addStudentSubject = async (req, res,next) => {
   console.log(req.body)
   const { student_id,subject_id } = req.body;
-  const columns = 'student_id,subject_id';
+  const columns = 'student_id,subject_id'
   const values = `'${student_id}','${subject_id}'`;
   try {
     const data = await studentSubject.insertWithReturn(columns, values);
@@ -54,8 +54,8 @@ export const updateStudentSubject = async (req, res) => {
   console.log(req.body)
   const { student_id,subject_id } = req.body;
   const {student_subject_id} =  req.params;
-  const columns = 'student_id, subject_id';
-  const values = `'${student_id}','${subject_id}'`;
+  const columns = ['student_id', 'subject_id'];
+  const values = [student_id,subject_id]
   const conditions = `student_subject_id = '${parseInt(student_subject_id)}'`
   try {
     const data = await studentSubject.update(columns, values, conditions);

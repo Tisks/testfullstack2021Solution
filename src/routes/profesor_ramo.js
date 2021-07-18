@@ -2,7 +2,7 @@ import express from 'express';
 import {listTeacherSubject,getTeacherSubjectUniqueId,getTeacherSubjectIds,addTeacherSubject,updateTeacherSubject,deleteTeacherSubject} from '../controllers';
 
 const profesorRamoRouter = express.Router();
-profesorRamoRouter.get('/lista_profesores_profesor_ramo',listTeacherSubject);
+profesorRamoRouter.get('/lista_profesores_ramos',listTeacherSubject);
 
 
 

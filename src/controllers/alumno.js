@@ -40,8 +40,8 @@ export const updateStudent = async (req, res) => {
   console.log(req.body)
   const {student_id} =  req.params;
   const {name,last_name} = req.body
-  const columns = 'name, last_name';
-  const values = `'${name}','${last_name}'`;
+  const columns = ['name', 'last_name'];
+  const values = [name,last_name]
   const conditions = `student_id = '${parseInt(student_id)}'`
   try {
     const data = await studentModel.update(columns, values, conditions);

@@ -1,13 +1,7 @@
 import express from 'express';
-import {getStudent, addStudent, updateStudent, deleteStudent,studentList} from '../controllers';
+import {filterFailureMarkStudents} from '../../controllers';
 
-const filterRouter = express.Router();
-filterRouter.get('/lista_alumnos',studentList);
+const filtroRouter = express.Router();
+filtroRouter.get('/filtro_ramos_promedio_rojo_alumnos',filterFailureMarkStudents);
 
-filterRouter.get('/alumno/:student_id',getStudent);
-filterRouter.put('/alumno/:student_id',updateStudent);
-filterRouter.delete('/alumno/:student_id',deleteStudent);
-
-filterRouter.post('/alumno',addStudent);
-
-export default filterRouter;
+export default filtroRouter;
