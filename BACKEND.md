@@ -464,7 +464,7 @@ Retorno: JSON que contiene todos los registros de la relacion alumno-curso de la
 localhost:3000/alumno_curso
 
 | Parametro (body)       | Tipo   | Descripción                                  | 
-|------------------- ----|--------|----------------------------------------------|
+|------------------------|--------|----------------------------------------------|
 | student_id             | Entero | (obligatorio) Identificador unico del alumno |
 | course_id              | Entero | (obligatorio) Identificador unico del curso  |
 
