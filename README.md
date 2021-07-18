@@ -121,8 +121,8 @@ Puedes usar el lenguaje de tu preferencia.
 
 **Nota:** La aplicación debe incluir un archivo README.md explicando como instalar las dependencias del proyecto y todos los supuestos considerados.
 
-Stack usado: NodeJS y framework Express para RESTful API
-Instalacion de dependencias, documentacion de la API y supuestos considerados en el archivo BACKEND.md
+**Stack usado: NodeJS y framework Express para RESTful API
+Instalacion de dependencias, documentacion de la API y supuestos considerados en el archivo BACKEND.md**
 
 
 ### Frontend
@@ -179,8 +179,8 @@ paciente, las horas que están tomadas.
 * La agenda debe tener un ancho de 960px y esta centrada en la pantalla
 * Puntos extras usar CSS3 sin librerias externas
 
-Se uso HTML, JS y solo CSS3
-Supuestos y como generar la agenda en el archivo FRONTEND.md
+**Se uso HTML, JS y solo CSS3
+Supuestos y como generar la agenda en el archivo FRONTEND.md**
 
 # Consideraciones de la prueba
 
