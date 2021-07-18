@@ -3,10 +3,10 @@ https://github.com/capitaria/testfullstack2021/edit/main/test-fullstack.md
 
 ## STACK
 
-Postgresql : Base de datos
-Node.js: Entorno de ejecución JS backend
-Express: Framework backend para RESTful API
-HTML, CSS Y JS: Lenguajes para Frontend
+1. Postgresql : Base de datos
+2. Node.js: Entorno de ejecución JS backend
+3. Express: Framework backend para RESTful API
+4. HTML, CSS Y JS: Lenguajes para Frontend
 
 ## Requerimientos
 
