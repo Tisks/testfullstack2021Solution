@@ -1,6 +1,7 @@
 import express from 'express';
 
 const indexRouter = express.Router();
+const path = require('path');
 
 import profesorRouter from './profesor';
 import alumnoRouter from './alumno';
@@ -28,5 +29,8 @@ indexRouter.use(listaRouter)
 indexRouter.get('/', function(req, res, next) {
     console.log('entre')
     return res.status(200).json({ message: testEnvironmentVariable });
+});
+indexRouter.get('/agenda', function(req, res, next) {
+    res.sendFile(path.join(__dirname+'/agenda/agenda.html'));
 });
 export default indexRouter;
