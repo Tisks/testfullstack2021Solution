@@ -71,6 +71,7 @@ npm run startdev
 
 Dejar la terminal/consola abierta. 
 El servidor esta escuchando el puerto 3000, es decir, localhost:3000
+**Puede demorarse en responder por lo que hay que esperar unos segundos**
 
 
 ## Testing
