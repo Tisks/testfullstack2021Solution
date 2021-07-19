@@ -8,7 +8,7 @@ const scheduleTimes = [ ['08:00','08:30'],  ['08:30','09:00'],  ['09:00','09:30'
                         ['18:30','19:00'],['19:00','19:30']]
 
 window.onload = function() {
-    var scheduleToRender = prompt("Porfavor ingrese el horario dado el formato del horario indicado en el README.md", "");
+    var scheduleToRender = prompt("Porfavor ingrese el horario dado el formato del horario indicado en el FRONTEND.md", "");
     if (scheduleToRender!= null) {
         console.log(scheduleToRender);   
         var mainTable = document.querySelector("div.central div.divTable div.divTableBody");
