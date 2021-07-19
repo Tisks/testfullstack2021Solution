@@ -32,7 +32,15 @@ Hay que iniciar el servidor de Postgresql usando alguno de estos comandos:
 sudo service postgresql start
 ```
 ```
-sudo systemctl start application
+sudo systemctl start postgresql
+```
+
+y verificar que este funcionando usando: 
+```
+sudo service postgresql status
+```
+```
+sudo systemctl status postgresql
 ```
 
 En la localización del proyecto, en la raiz, para instalar las dependencias 
@@ -40,7 +48,12 @@ En la localización del proyecto, en la raiz, para instalar las dependencias
 npm install
 ```
 
-Para crear las tablas y relaciones de la base de datos se debe correr el siguiente comandoJS:
+Para crear la base de datos que se va a usar se debe ejecutar el siguiente comando (estando en la raiz del proyecto)
+```
+node /src/utils/createdb.js
+```
+
+Para crear las tablas y relaciones de la base de datos se debe correr el siguiente comando:
 ```
 npm run runQuery
 ```
