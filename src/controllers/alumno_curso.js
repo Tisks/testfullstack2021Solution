@@ -66,13 +66,15 @@ export const updateStudentCourse = async (req, res) => {
   }
 };
 
-export const deleteStudentCourse = async (req, res) => {
+export const deleteStudentCourse = async (req, res,next) => {
   console.log( req.params)
   const { student_course_id} =  req.params;
   const conditions = `student_course_id = '${parseInt(student_course_id)}'`
   try {
     const data = await studentCourse.delete(conditions);
-    res.status(200).json({ messages: data.rows });
+    req.body.student_course_id = student_course_id
+    next();
+    //res.status(200).json({ messages: data.rows });
   } catch (err) {
     res.status(200).json({ messages: err.stack });
   }

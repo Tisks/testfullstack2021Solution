@@ -66,8 +66,8 @@ export const updateStudentSubject = async (req, res) => {
 };
 
 export const deleteStudentSubject = async (req, res) => {
-  console.log( req.params)
-  const { student_subject_id} =  req.params;
+  console.log( req.body)
+  const { student_subject_id} =  req.body;
   const conditions = `student_subject_id = '${parseInt(student_subject_id)}'`
   try {
     const data = await studentSubject.delete(conditions);
