@@ -14,7 +14,7 @@ Haber instalado con anterioridad las siguientes tecnologias:
 
 * NodeJS: https://nodejs.org/en/download/ , instalar version LTS usando installer en caso de Windows y Mac respectivamente. En caso de Linux seguir instrucciones dada
 su distribucion en https://github.com/nodesource/distributions/blob/master/README.md#debmanual
-* Postgresql: https://www.postgresql.org/download/ , instalar version >= 12
+* Postgresql: https://www.postgresql.org/download/ , instalar version >= 12. Contraseña del usuario 'postgres' debe ser 'password' y el puerto el predeterminado 5432
 * Git (opcional): https://git-scm.com/downloads , herramienta de versionamiento para poder clonar este proyecto. Otra opcion es descargar el ZIP en el boton de Code.
 
 ## Instalación
@@ -26,6 +26,8 @@ node -v
 ```
 npm -v
 ```
+
+En Linux:
 
 Hay que iniciar el servidor de Postgresql usando alguno de estos comandos:
 ```
@@ -42,6 +44,10 @@ sudo service postgresql status
 ```
 sudo systemctl status postgresql
 ```
+
+En Windows:
+1. Buscar services.msc en el Run window (Windows key + R)
+2. Buscar el servicio postgres e iniciarlo en las opciones con click derecho
 
 En la localización del proyecto, en la raiz, para instalar las dependencias 
 ```
