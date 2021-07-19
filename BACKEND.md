@@ -50,10 +50,10 @@ npm install
 
 Para crear la base de datos que se va a usar se debe ejecutar el siguiente comando (estando en la raiz del proyecto)
 ```
-node /src/utils/createdb.js
+node src/utils/createdb.js
 ```
 
-Para crear las tablas y relaciones de la base de datos se debe correr el siguiente comando:
+Para crear las tablas y relaciones de la base de datos se debe correr el siguiente comando (se puede demorar unos 10 segundos):
 ```
 npm run runQuery
 ```
